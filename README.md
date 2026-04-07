@@ -1,4 +1,4 @@
-# 🏦 Sistema de Banco Digital - Backend (Sprint 1)
+#  Sistema de Banco Digital - Backend (Sprint 1)
 
 Este proyecto constituye la base tecnológica del **Banco Digital**, desarrollada con el objetivo de gestionar la identidad de los clientes y asegurar la persistencia de datos en una infraestructura basada en la nube.
 
