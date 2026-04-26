@@ -1,32 +1,35 @@
-#  Sistema de Banco Digital - Backend (Sprint 1)
+# Sistema de Banco Digital - Backend (Sprint 1 y 2)
 
-Este proyecto constituye la base tecnológica del **Banco Digital**, desarrollada con el objetivo de gestionar la identidad de los clientes y asegurar la persistencia de datos en una infraestructura basada en la nube.
+Backend en Spring Boot para cubrir HU 1 a HU 6 del proyecto de banco digital, usando PostgreSQL en Neon.
 
----
+## Arquitectura
 
-##  Logros del Sprint 1
-En este primer ciclo de desarrollo, el equipo se enfocó en establecer la arquitectura base y cumplir con las siguientes funcionalidades:
+Se organizo en modulos por dominio para facilitar evolucion a microservicios:
 
-* **HU-1: Registro de Clientes:** Implementación de endpoint para la creación de nuevos usuarios con validación de tipo de documento.
-* **HU-2: Consulta de Clientes:** Endpoint para la recuperación de información detallada de un cliente mediante su identificador único.
-* **CRUD Completo:** Adicionalmente, se habilitaron las operaciones de actualización (PUT) y eliminación (DELETE).
+- `cliente` (HU-1, HU-2)
+- `cuenta` (HU-3, HU-4)
+- `transaccion` (HU-5, HU-6)
+- `shared` (manejo de errores y respuestas comunes)
 
----
+## Endpoints principales
 
-##  Tecnologías Utilizadas
-El proyecto ha sido construido bajo estándares empresariales modernos:
+- `POST /api/clientes` -> HU-1 Registrar cliente
+- `GET /api/clientes/{id}` -> HU-2 Consultar cliente
+- `POST /api/cuentas` -> HU-3 Crear cuenta bancaria
+- `GET /api/cuentas/{numeroCuenta}/saldo` -> HU-4 Consultar saldo
+- `POST /api/transacciones/transferencias` -> HU-5 Transferir dinero
+- `POST /api/transacciones/depositos` -> HU-6 Depositar dinero
 
-* **Lenguaje:** Java 21
-* **Framework:** Spring Boot 3.2.4
-* **Gestión de Dependencias:** Maven
-* **Persistencia:** Spring Data JPA con Hibernate
-* **Base de Datos:** PostgreSQL hospedada en **Neon Cloud DB**
-* **Documentación:** Swagger UI (OpenAPI 3.0)
+## Configuracion de Neon
 
----
+Definir variables de entorno:
 
-##  Estructura del Proyecto
-```text
-src/main/java/com/bancodigital/backend/
-├── BackendApplication.java    # Clase principal de arranque
-└── ClienteController.java     # Lógica de negocio (Modelos, Repositorios y Controladores)
+- `NEON_DB_URL`
+- `NEON_DB_USER`
+- `NEON_DB_PASSWORD`
+
+Luego ejecutar:
+
+```bash
+./mvnw spring-boot:run
+```
